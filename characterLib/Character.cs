@@ -235,6 +235,15 @@ namespace characterLib
             characterString.AppendLine("Constitution: " + Constitution);
             characterString.AppendLine("Dexterity: " + Dexteriry);
             characterString.AppendLine("Charisma: " + Charisma);
+            characterString.AppendLine("------- Inventory --------");
+
+            foreach(var item in Inventory)
+            {
+                characterString.AppendLine("Item Name: " + item.ItemName);
+                characterString.AppendLine("Weight: " + item.Weight);
+                characterString.AppendLine("Cost: " + item.Cost + " gold pieces");
+                characterString.AppendLine("-------- --------- --------");
+            }
 
             return characterString.ToString(); // can't just return characterString, cuz the output from StringBuilder is not string
         }

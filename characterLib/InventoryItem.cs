@@ -11,7 +11,7 @@ namespace characterLib
         }
 
         public string ItemName { get; set; }
-        public uint Weight { get; set; } // uint is only positive 0 - 4 billion
+        public uint Weight { get; set; } // uint represents only positive integer, 0 - 4 billion
         public uint Cost { get; set; }
     }
 }
