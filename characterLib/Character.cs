@@ -171,9 +171,22 @@ namespace characterLib
         {
             // don't do Random here, such as Random rnd2 = new Random(); cuz it will always use the same set of numbers to generate random nr. 
             // instead, do Random at the top of the class definition, which will generate new set of nrs every time it's instanciated 
-            int score = rnd.Next(3, 18);
+            // use the next line if only need to roll dice once
+            // int score = rnd.Next(3, 18);
 
-            return score;
+            int score = 0;
+            int hightestScore = 0;
+
+            for (var i = 0; i < 3; i++)
+            {
+                score = rnd.Next(3, 18);
+                if (score > hightestScore)
+                {
+                    hightestScore = score;
+                }
+            }
+
+            return hightestScore;
         }
 
         public void GenerateCharacter()
