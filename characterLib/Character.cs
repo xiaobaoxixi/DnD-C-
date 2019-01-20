@@ -225,6 +225,36 @@ namespace characterLib
             AddInventoryItem(torch);
         }
 
+        public string RecommendClass()
+        {
+            var recommendation = new StringBuilder();
+
+            if (Strength > 12)
+            {
+                recommendation.AppendLine("This character would make a good fighter.");
+            }
+            if (Intelligence > 14)
+            {
+                recommendation.AppendLine("This character should be a magic user.");
+            }
+            else
+            {
+                recommendation.AppendLine("Maybe " + CharacterName + " shouldn't be a magic user.");
+            }
+
+            if (Intelligence > 12 && Wisdom > 12)
+            {
+                recommendation.AppendLine("This character should weild magic.");
+            }
+
+            if (Strength > 12 || Dexteriry > 12)
+            {
+                recommendation.AppendLine("This one might make a good thief");
+            }
+
+            return recommendation.ToString();
+        }
+
         public override string ToString()
         {
             var characterString = new StringBuilder();
@@ -237,13 +267,15 @@ namespace characterLib
             characterString.AppendLine("Charisma: " + Charisma);
             characterString.AppendLine("------- Inventory --------");
 
-            foreach(var item in Inventory)
+            foreach (var item in Inventory)
             {
                 characterString.AppendLine("Item Name: " + item.ItemName);
                 characterString.AppendLine("Weight: " + item.Weight);
                 characterString.AppendLine("Cost: " + item.Cost + " gold pieces");
                 characterString.AppendLine("-------- --------- --------");
             }
+
+            characterString.AppendLine(RecommendClass());
 
             return characterString.ToString(); // can't just return characterString, cuz the output from StringBuilder is not string
         }
