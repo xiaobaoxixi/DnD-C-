@@ -168,5 +168,15 @@ namespace characterLib
 
             return score;
         }
+
+        public void GenerateCharacter()
+        {
+            Strength = RollAttributeScore(); // use Strength property istead of the backing variable _strength, backing variable is used for getters and if used here, the setup of if checking is lost   
+            Intelligence = RollAttributeScore();
+            Wisdom = RollAttributeScore();
+            Dexteriry = RollAttributeScore();
+            Constitution = RollAttributeScore();
+            Charisma = RollAttributeScore();
+        }
     }
 }
