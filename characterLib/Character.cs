@@ -24,6 +24,8 @@ namespace characterLib
             _charisma = cha;
         }
 
+        private Random rnd = new Random();
+
         public string CharacterName { get; set; } // auto propoties. Use this if there is no logic/rules needed in getters and setters
 
         private int _strength; // _ is used to hint private. Use private for backing variable
@@ -156,6 +158,15 @@ namespace characterLib
         public int Level
         {
             get { return int.Parse(Math.Floor(ExperiencePoints / 1000d).ToString()); } // d is used to tell it's decimal, int.Parse and ToString() are used to make sure the returned value meets requirement of the property
+        }
+
+        private int RollAttributeScore()
+        {
+            // don't do Random here, such as Random rnd2 = new Random(); cuz it will always use the same set of numbers to generate random nr. 
+            // instead, do Random at the top of the class definition, which will generate new set of nrs every time it's instanciated 
+            int score = rnd.Next(3, 18);
+
+            return score;
         }
     }
 }
