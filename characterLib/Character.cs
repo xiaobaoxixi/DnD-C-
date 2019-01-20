@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Text;
+
 namespace characterLib
 {
     public class Character
@@ -11,6 +13,11 @@ namespace characterLib
             _dexterety = 3;
             _constitution = 3;
             _charisma = 3;
+        }
+
+        public Character(string name)
+        {
+            CharacterName = name;
         }
 
         public Character(string name, int str, int cons, int dex, int wis, int cha, int intelli)  // overloaded constructor
@@ -46,7 +53,7 @@ namespace characterLib
         }
         */
 
-        /* C# version, value is built-in */
+        /* C# version, 'value' is built-in */
         public int Strength
         {
             get { return _strength; }
@@ -66,7 +73,7 @@ namespace characterLib
         private int _intelligence;
         public int Intelligence
         {
-            get { return Intelligence; }
+            get { return _intelligence; }
             set
             {
                 if (value >= 3 && value <= 18)
@@ -177,6 +184,20 @@ namespace characterLib
             Dexteriry = RollAttributeScore();
             Constitution = RollAttributeScore();
             Charisma = RollAttributeScore();
+        }
+
+        public override string ToString()
+        {
+            var characterString = new StringBuilder();
+            characterString.AppendLine("Character name: " + this.CharacterName); // this is not a must
+            characterString.AppendLine("Strength: " + Strength); // even though Strength is int, still will output string
+            characterString.AppendLine("Intelligence: " + Intelligence);
+            characterString.AppendLine("Wisdom: " + Wisdom);
+            characterString.AppendLine("Constitution: " + Constitution);
+            characterString.AppendLine("Dexterity: " + Dexteriry);
+            characterString.AppendLine("Charisma: " + Charisma);
+
+            return characterString.ToString(); // can't just return characterString, cuz the output from StringBuilder is not string
         }
     }
 }
