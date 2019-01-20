@@ -3,8 +3,25 @@ namespace characterLib
 {
     public class Character
     {
-        public Character()
+        public Character() // constructor
         {
+            _strength = 3;
+            _intelligence = 3;
+            _wisdom = 3;
+            _dexterety = 3;
+            _constitution = 3;
+            _charisma = 3;
+        }
+
+        public Character(string name, int str, int cons, int dex, int wis, int cha, int intelli)  // overloaded constructor
+        {
+            CharacterName = name;
+            _strength = str;
+            _wisdom = wis;
+            _dexterety = dex;
+            _intelligence = intelli;
+            _constitution = cons;
+            _charisma = cha;
         }
 
         public string CharacterName { get; set; } // auto propoties. Use this if there is no logic/rules needed in getters and setters
@@ -12,6 +29,7 @@ namespace characterLib
         private int _strength; // _ is used to hint private. Use private for backing variable
 
         /* JAVA version of setters and getters when there are rules to apply
+         *        
         public void SetStregth(int str) // use void, cuz setters don't have return
         {
             if(str >= 3 && str <= 18)
@@ -131,6 +149,13 @@ namespace characterLib
                 }
 
             }
+        }
+
+        // computed property
+        public int ExperiencePoints { get; set; }
+        public int Level
+        {
+            get { return int.Parse(Math.Floor(ExperiencePoints / 1000d).ToString()); } // d is used to tell it's decimal, int.Parse and ToString() are used to make sure the returned value meets requirement of the property
         }
     }
 }
