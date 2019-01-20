@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using System.Collections.Generic;
 
 namespace characterLib
 {
@@ -15,6 +16,9 @@ namespace characterLib
             _charisma = 3;
 
             RandomNames = new string[4] { "dabao", "xiaobao", "Nemo", "Lima" };
+
+
+            Inventory = new List<InventoryItem>(); // initialise inventory list, otherwise that () will give exception
         }
 
         public Character(string name)
@@ -171,6 +175,13 @@ namespace characterLib
             get { return int.Parse(Math.Floor(ExperiencePoints / 1000d).ToString()); } // d is used to tell it's decimal, int.Parse and ToString() are used to make sure the returned value meets requirement of the property
         }
 
+        public List<InventoryItem> Inventory { get; set; } // List<> holds one type of list items
+
+        public void AddInventoryItem(InventoryItem item)
+        {
+            Inventory.Add(item);
+        }
+
         private int RollAttributeScore()
         {
             // don't do Random here, such as Random rnd2 = new Random(); cuz it will always use the same set of numbers to generate random nr. 
@@ -202,6 +213,16 @@ namespace characterLib
             Constitution = RollAttributeScore();
             Charisma = RollAttributeScore();
             CharacterName = GetRandomName();
+
+            // some default stuff in the inventory
+            Inventory.Clear(); // start with emptying the list
+            var cloak = new InventoryItem("cloak", 4, 2);
+            var staff = new InventoryItem("staff", 3, 5);
+            var torch = new InventoryItem("torch", 1, 1);
+
+            AddInventoryItem(cloak);
+            AddInventoryItem(staff);
+            AddInventoryItem(torch);
         }
 
         public override string ToString()
