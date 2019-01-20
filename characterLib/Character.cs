@@ -13,6 +13,8 @@ namespace characterLib
             _dexterety = 3;
             _constitution = 3;
             _charisma = 3;
+
+            RandomNames = new string[4] { "dabao", "xiaobao", "Nemo", "Lima" };
         }
 
         public Character(string name)
@@ -30,6 +32,8 @@ namespace characterLib
             _constitution = cons;
             _charisma = cha;
         }
+
+        private string[] RandomNames; // use string[] to declare string array
 
         private Random rnd = new Random();
 
@@ -197,6 +201,7 @@ namespace characterLib
             Dexteriry = RollAttributeScore();
             Constitution = RollAttributeScore();
             Charisma = RollAttributeScore();
+            CharacterName = GetRandomName();
         }
 
         public override string ToString()
@@ -211,6 +216,12 @@ namespace characterLib
             characterString.AppendLine("Charisma: " + Charisma);
 
             return characterString.ToString(); // can't just return characterString, cuz the output from StringBuilder is not string
+        }
+
+        private string GetRandomName()
+        {
+            var randomIndex = rnd.Next(0, RandomNames.Length - 1); // Next receives 2 arguments, min-value and max-value
+            return RandomNames[randomIndex];
         }
     }
 }
